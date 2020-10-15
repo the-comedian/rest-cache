@@ -28,3 +28,34 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 You can then execute your native executable with: `./target/rest-cache-1-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+
+## Application info
+
+Application hashes (SHA-256) any string that was passed by HTTP. Some of strings are stored in cahce which can be confugured. By the default the application is running on http://localhost:8080. You can access application methods by HTTP. All HTTP methods are shown below:
+
+### initCache
+
+This method is used to init cache. Capacity param can be any positive integer and type can be LRU or LFU string. Example of usage is shown below.
+
+```
+curl --location --request POST 'http://localhost:8080/rest/initCache' \ 
+--header 'Content-Type: application/json' \ 
+--data-raw '{ <
+    "capacity": 5, 
+    "type": "LRU" 
+}'
+```
+
+### getResult
+
+This method is used to get hash of input string. Example of usage is shown below.
+
+`curl --location --request GET 'http://localhost:8080/rest/getResult/hello'`
+
+### getCacheInfo
+
+This method is used to get information about cache. Example of usage is shown below.
+
+`curl --location --request GET 'http://localhost:8080/rest/getCacheInfo'`
+
+
