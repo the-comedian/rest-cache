@@ -71,8 +71,8 @@ public class RestGateTest {
                 .body(new HashMap<>())
                 .post("/rest/initCache")
                 .then()
-                .statusCode(500)
-                .body(notNullValue());
+                .statusCode(200)
+                .body(is("INVALID PARAMS"));
     }
 
 }

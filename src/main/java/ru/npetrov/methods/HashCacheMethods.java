@@ -32,7 +32,14 @@ public class HashCacheMethods {
     /**
      * Method for cache initialisation
      */
-    public void initCache(InitCacheRequest request) {
+    public String initCache(InitCacheRequest request) {
+        if (request.getCapacity() == null || request.getType() == null) {
+            return "INVALID PARAMS";
+        } else {
+            if (request.getCapacity() <= 0) {
+                return "INVALID PARAMS";
+            }
+        }
         logger.info("calling initCache with request: " + request);
         CacheType cacheType = request.getType();
         switch (cacheType) {
@@ -46,6 +53,7 @@ public class HashCacheMethods {
             }
         }
         logger.info("call initCache end");
+        return "OK";
     }
 
     /**

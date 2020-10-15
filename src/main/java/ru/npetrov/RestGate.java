@@ -50,8 +50,8 @@ public class RestGate {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response initCache(InitCacheRequest request) {
-        hashCacheMethods.initCache(request);
-        return Response.ok("OK").build();
+        String result = hashCacheMethods.initCache(request);
+        return Response.ok(result).build();
     }
 
 }
